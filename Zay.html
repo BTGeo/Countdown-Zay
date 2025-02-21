@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown till Tomi Gets to See Zaynah</title>
+    <style>
+        body {
+            background-color: #ffeb3b;
+            color: #d81b60;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        #countdown {
+            font-size: 2em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #detailedCountdown {
+            font-size: 1.5em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .heart {
+            color: red;
+            font-size: 3em;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown till Tomi Gets to See Zaynah <span class="heart">❤</span></h1>
+    <div id="countdown"></div>
+    <div id="detailedCountdown"></div>
+
+    <script>
+        function updateCountdown() {
+            const today = new Date();
+            const targetDate = new Date(today.getFullYear(), 2, 15, 0, 0, 0); // March 15
+            
+            if (today > targetDate) {
+                targetDate.setFullYear(today.getFullYear() + 1); // Move to next year if passed
+            }
+
+            const timeDiff = targetDate - today;
+            const daysLeft = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hoursLeft = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutesLeft = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const secondsLeft = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerText = `${daysLeft} days left!`;
+            document.getElementById("detailedCountdown").innerText = `(${hoursLeft}h ${minutesLeft}m ${secondsLeft}s left... not that I'm counting or anything)`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
